@@ -157,8 +157,12 @@ class CircularListTest(unittest.TestCase):
         self.assertEqual(self.cl.get_front(), 'X')
 
     def test_remove_link_empty_list(self):
-        self.cl.remove_link(3)
-        self.assertEqual(self.cl.sentinel.next, self.cl.sentinel)
+        with self.assertRaises(IndexError):
+            self.cl.remove_link(3)
+
+    def test_remove_link_negative_index(self):
+        with self.assertRaises(IndexError):
+            self.cl.remove_link(-9)
 
     def test_remove_link_non_empty_list(self):
         self.fill_circular_list_with_data()
