@@ -18,12 +18,14 @@ class LinkedListTest(unittest.TestCase):
         self.assertEqual(self.ll.get_front(), "A")
 
     # Inserts A at index 0, B at index 1 and C at index 2. Asserts A is at the front and C is at the back.
+    # test_add_link_before: Changed indexes to match assignment 3 guidelines example, does not allow for creating a
+    # new node past the list's length
     def test_add_link_before(self):
         self.ll.add_link_before("A", 0)
-        self.ll.add_link_before("B", 1)
-        self.ll.add_link_before("C", 2)
-        self.assertEqual(self.ll.get_front(), "A")
-        self.assertEqual(self.ll.get_back(), "C")
+        self.ll.add_link_before("B", 0)
+        self.ll.add_link_before("C", 1)
+        self.assertEqual(self.ll.get_front(), "B")
+        self.assertEqual(self.ll.get_back(), "A")
 
     # Tries to insert Z at index 26 in an empty list, verifies an IndexError is raised.
     def test_add_link_before_out_of_bounds(self):
