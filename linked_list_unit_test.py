@@ -29,7 +29,16 @@ class LinkedListTest(unittest.TestCase):
     def test_add_link_before_out_of_bounds_empty_list(self):
         with self.assertRaises(IndexError):
             self.ll.add_link_before('Z', 26)
-
+    
+    # Tries to insert D at index 3, verifies an IndexError is raised. 
+    # (If list if not empty and have, say, N elements, valid indices for both methods are 0 ... N-1, inclusive.)
+    # CHECK the related piazza post: https://piazza.com/class/k8aktyvmw804ns?cid=141
+    def test_add_link_before_out_of_bounds_index_n(self):
+        self.ll.add_link_before("A", 0)
+        self.ll.add_link_before("B", 0)
+        self.ll.add_link_before("C", 1)
+        self.ll.add_link_before("D", 3) # -> Exception: Index out of bounds 
+        
     # Using standard fill, tries to insert Z at index 26 in a nonempty list, verifies an IndexError is raised.
     def test_add_link_before_out_of_bounds_nonempty_list(self):
         self.fill_linked_list_with_data()
