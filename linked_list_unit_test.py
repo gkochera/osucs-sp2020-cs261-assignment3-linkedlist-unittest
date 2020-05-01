@@ -1,8 +1,6 @@
 import unittest
 from linked_list import CircularList, LinkedList
 
-#FixMe: Check contains after remove for both types of lists and all remove functions (edge cases in particular!)
-
 class LinkedListTest(unittest.TestCase):
     def setUp(self) -> None:
         self.ll = LinkedList()
@@ -28,7 +26,13 @@ class LinkedListTest(unittest.TestCase):
         self.assertEqual(self.ll.get_back(), "A")
 
     # Tries to insert Z at index 26 in an empty list, verifies an IndexError is raised.
-    def test_add_link_before_out_of_bounds(self):
+    def test_add_link_before_out_of_bounds_empty_list(self):
+        with self.assertRaises(IndexError):
+            self.ll.add_link_before('Z', 26)
+
+    # Using standard fill, tries to insert Z at index 26 in a nonempty list, verifies an IndexError is raised.
+    def test_add_link_before_out_of_bounds_nonempty_list(self):
+        self.fill_linked_list_with_data()
         with self.assertRaises(IndexError):
             self.ll.add_link_before('Z', 26)
 
@@ -43,6 +47,12 @@ class LinkedListTest(unittest.TestCase):
         self.ll.add_link_before("G", 0)
         self.ll.add_link_before("F", 0)
         self.assertEqual(self.ll.__str__(), '[F -> G -> H]')
+
+    def test_add_link_before_fails_at_link_before_tail(self):
+        self.ll.add_front('B')
+        self.ll.add_front('A')
+        with self.assertRaises(IndexError):
+            self.ll.add_link_before('C', 2)
 
     # Tries to remove a link in an empty list, verifies an IndexError is raised.
     def test_remove_link_empty_list(self):
@@ -201,11 +211,22 @@ class CircularListTest(unittest.TestCase):
             self.cl.remove_front()
         self.assertEqual(self.cl.get_front(), 'X')
 
+    # Try to add X at index 100, verify Index Error is raised.
+    def test_add_link_before_out_of_bounds_index_empty_list(self):
+        with self.assertRaises(IndexError):
+            self.cl.add_link_before('X', 100)
+
     # Use standard fill, try to add X at index 100, verify Index Error is raised.
-    def test_add_link_before_out_of_bounds_index(self):
+    def test_add_link_before_out_of_bounds_index_nonempty_list(self):
         self.fill_circular_list_with_data()
         with self.assertRaises(IndexError):
             self.cl.add_link_before('X', 100)
+
+    # Use standard fill, try to add X at index just prior to tail, verify Index Error is raised.
+    def test_add_link_before_index_prior_to_tail_fails(self):
+        self.fill_circular_list_with_data()
+        with self.assertRaises(IndexError):
+            self.cl.add_link_before('X', 7)
 
     # Verify IndexError raised when removing link at index 3 on empty list.
     def test_remove_link_empty_list(self):
