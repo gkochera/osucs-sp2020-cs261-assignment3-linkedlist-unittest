@@ -76,19 +76,28 @@ class LinkedListTest(unittest.TestCase):
     def test_add_link_before_fails_at_link_before_tail(self):
         self.ll.add_front('B')
         self.ll.add_front('A')
-        with self.assertRaises(IndexError):
-            self.ll.add_link_before('C', 2)
-
+        try:
+            with self.assertRaises(IndexError):
+                self.ll.add_link_before('C', 2)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
+        
     # Tries to remove a link in an empty list, verifies an IndexError is raised.
     def test_remove_link_empty_list(self):
-        with self.assertRaises(IndexError):
-            self.ll.remove_link(1)
+        try:
+            with self.assertRaises(IndexError):
+                self.ll.remove_link(1)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
 
     # Tries to remove a link at a negative index, verifies an IndexError is raised.
     def test_remove_link_negative_index(self):
-        with self.assertRaises(IndexError):
-            self.ll.remove_link(-93)
-
+        try:
+            with self.assertRaises(IndexError):
+                self.ll.remove_link(-93)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
+        
     # Adds A, B and C to list respectively. Removes B. Verifies A is first, C is last and B is gone.
     def test_remove_link(self):
         self.ll.add_back("A")
@@ -238,30 +247,45 @@ class CircularListTest(unittest.TestCase):
 
     # Try to add X at index 100, verify Index Error is raised.
     def test_add_link_before_out_of_bounds_index_empty_list(self):
-        with self.assertRaises(IndexError):
-            self.cl.add_link_before('X', 100)
+        try:
+            with self.assertRaises(IndexError):
+                self.cl.add_link_before('X', 100)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
 
     # Use standard fill, try to add X at index 100, verify Index Error is raised.
     def test_add_link_before_out_of_bounds_index_nonempty_list(self):
         self.fill_circular_list_with_data()
-        with self.assertRaises(IndexError):
-            self.cl.add_link_before('X', 100)
+        try:
+            with self.assertRaises(IndexError):
+                self.cl.add_link_before('X', 100)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
 
     # Use standard fill, try to add X at index just prior to tail, verify Index Error is raised.
     def test_add_link_before_index_prior_to_tail_fails(self):
         self.fill_circular_list_with_data()
-        with self.assertRaises(IndexError):
-            self.cl.add_link_before('X', 7)
-
+        try:
+            with self.assertRaises(IndexError):
+                self.cl.add_link_before('X', 7)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
+        
     # Verify IndexError raised when removing link at index 3 on empty list.
     def test_remove_link_empty_list(self):
-        with self.assertRaises(IndexError):
-            self.cl.remove_link(3)
+        try:
+            with self.assertRaises(IndexError):
+                self.cl.remove_link(3)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
 
     # Verify IndexError is raised when removing link at a negative index.
     def test_remove_link_negative_index(self):
-        with self.assertRaises(IndexError):
-            self.cl.remove_link(-9)
+        try:
+            with self.assertRaises(IndexError):
+                self.cl.remove_link(-9)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
 
     # Use standard fill, remove D at index 3, remove the front 3 values, verify E is the front.
     def test_remove_link_non_empty_list(self):
