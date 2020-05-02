@@ -7,8 +7,4 @@
 
 I am on unofficial and official OSU Slack. Reach out to me if you have comments/input/questions/etc.
 
-- Contributors:
-  - Ray Franklin
-  - Reid Hardin
-  - Hassan Rachid
-  - HJ (Github: positive235)
+- Contributors: Ray Franklin, Reid Hardin, Hassan Rachid, HJ
