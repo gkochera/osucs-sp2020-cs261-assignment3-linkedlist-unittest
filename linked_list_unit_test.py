@@ -37,15 +37,24 @@ class LinkedListTest(unittest.TestCase):
                 self.ll.add_link_before("D", 3)
         except Exception as msg:
              self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
-            
+
     # Tries to insert Z at index 26 in an empty list, verifies an IndexError is raised.
-    def test_add_link_before_out_of_bounds(self):
+    def test_add_link_before_out_of_bounds_empty_list(self):
         try:
             with self.assertRaises(IndexError):
                 self.ll.add_link_before('Z', 26)
         except Exception as msg:
             self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
-          
+
+    # Using standard fill, tries to insert Z at index 26 in a nonempty list, verifies an IndexError is raised.
+    def test_add_link_before_out_of_bounds_nonempty_list(self):
+        self.fill_linked_list_with_data()
+        try:
+            with self.assertRaises(IndexError):
+                self.ll.add_link_before('Z', 26)
+        except Exception as msg:
+            self.assertEqual(msg.args[0], YOUR_EXCEPTION_MESSAGE)
+
     # Tries to insert the '@' symbol at index -2, verifies an IndexError is raised.
     def test_add_link_before_negative_index(self):
         try:
@@ -60,7 +69,7 @@ class LinkedListTest(unittest.TestCase):
         self.ll.add_link_before("G", 0)
         self.ll.add_link_before("F", 0)
         self.assertEqual(self.ll.__str__(), '[F -> G -> H]')
-  
+
     def test_add_link_before_fails_at_link_before_tail(self):
         self.ll.add_front('B')
         self.ll.add_front('A')
