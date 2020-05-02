@@ -439,6 +439,28 @@ class CircularListTest(unittest.TestCase):
         self.cl.circularListReverse()
         self.assertEqual(self.cl.__str__(), '[G <-> F <-> E <-> D <-> C <-> B <-> A]')
 
+    # Verify reversing on a filled CircularList containing an even # of elements 
+    # yields the correct result.
+    def test_circular_list_reverse_even_number_of_elements(self):
+        self.fill_circular_list_with_data()
+        self.cl.add_back('H')
+        self.cl.add_back('I')
+        self.cl.add_back('J')
+        self.cl.circularListReverse()
+        self.assertEqual(self.cl.__str__(), '[J <-> I <-> H <-> G <-> F <-> E <-> D <-> C <-> B <-> A]')
 
+    # Verify reversing on a CircularList containing only 2 elements yields the correct result.
+    def test_circular_list_reverse_2_elements(self):
+        self.cl = CircularList([2, 3])
+        self.cl.circularListReverse()
+        self.assertEqual(self.cl.__str__(), '[3 <-> 2]')
+
+    # Verify reversing on a CircularList containing only 1 element yields the correct result.
+    def test_circular_list_reverse_1_element(self):
+        self.cl = CircularList(['A'])
+        self.cl.circularListReverse()
+        self.assertEqual(self.cl.__str__(), '[A]')
+
+        
 if __name__ == '__main__':
     unittest.main()
