@@ -26,7 +26,10 @@ class LinkedListTest(unittest.TestCase):
         self.ll.add_link_before("B", 0)
         self.ll.add_link_before("C", 1)
         self.assertEqual(self.ll.__str__(), '[B -> C -> A]')
-
+        
+    # Tries to insert D at index 3, verifies an IndexError is raised. 
+    # (If list if not empty and have, say, N elements, valid indices for both methods are 0 ... N-1, inclusive.)
+    # CHECK the related piazza post: https://piazza.com/class/k8aktyvmw804ns?cid=141
     def test_add_link_before_out_of_bounds_index_n(self):
         self.ll.add_link_before("A", 0)
         self.ll.add_link_before("B", 0)
